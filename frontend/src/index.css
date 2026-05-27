@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+
+  padding: 0;
+}
+
+/* DARK THEME */
+
+.dark-theme {
+  --bg-primary: #021526;
+
+  --bg-secondary: #0d2238;
+
+  --bg-card: #12395d;
+
+  --text-primary: white;
+
+  --text-secondary: #cfd8dc;
+}
+
+/* LIGHT THEME */
+
+.light-theme {
+  --bg-primary: #f4f7fb;
+
+  --bg-secondary: white;
+
+  --bg-card: #e3f2fd;
+
+  --text-primary: #111;
+
+  --text-secondary: #555;
+}
+
+/* GLOBAL */
+
+.dark-theme,
+.light-theme {
+  background: var(--bg-primary);
+
+  color: var(--text-primary);
+
+  min-height: 100vh;
+}
+
+/* COMMON UI */
+
+.sidebar {
+  background: var(--bg-secondary);
+}
+
+.dashboard-card,
+.users-table-container,
+.modal-container,
+.activity-item {
+  background: var(--bg-card);
+}
+
+.users-table th {
+  background: var(--bg-secondary);
+}
+
+.users-table td {
+  color: var(--text-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+span {
+  color: var(--text-primary);
+}

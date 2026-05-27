@@ -1,0 +1,41 @@
+.masters-page {
+  padding: 20px;
+}
+
+.page-header {
+  margin-bottom: 20px;
+}
+
+.master-form {
+  display: flex;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+.master-form input {
+  padding: 12px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: var(--bg-card);
+
+  color: var(--text-primary);
+}
+
+.master-form button {
+  background: #00c2ff;
+
+  color: white;
+
+  border: none;
+
+  padding: 12px 20px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
