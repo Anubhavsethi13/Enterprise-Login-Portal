@@ -10,6 +10,8 @@ import { FaFacebookF, FaGoogle, FaApple } from "react-icons/fa";
 
 import { HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
 
+import { TailSpin } from "react-loader-spinner";
+
 import heroImage from "../assets/hero.jpg";
 
 import "../styles/login.css";
@@ -21,11 +23,14 @@ function SuperAdminLogin() {
 
   const [password, setPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const handleLogin = async () => {
+    setLoading(true);
+
     try {
       const response = await loginUser({
         email,
-
         password,
       });
 
@@ -34,17 +39,9 @@ function SuperAdminLogin() {
         response.role === "company_admin" ||
         response.role === "company_user"
       ) {
-        localStorage.setItem(
-          "token",
+        localStorage.setItem("token", response.token || "");
 
-          response.token || "",
-        );
-
-        localStorage.setItem(
-          "user",
-
-          JSON.stringify(response),
-        );
+        localStorage.setItem("user", JSON.stringify(response));
 
         toast.success("Login Successful");
 
@@ -56,6 +53,8 @@ function SuperAdminLogin() {
       console.log(error);
 
       toast.error("Invalid Credentials");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -123,8 +122,19 @@ function SuperAdminLogin() {
           <a href="/">Forgot Password?</a>
         </div>
 
-        <button className="login-btn" onClick={handleLogin}>
-          Login
+        <button className="login-btn" onClick={handleLogin} disabled={loading}>
+          {loading ? (
+            <div className="loader-wrapper">
+              <TailSpin
+                height="22"
+                width="22"
+                color="#ffffff"
+                ariaLabel="loading"
+              />
+            </div>
+          ) : (
+            "Login"
+          )}
         </button>
 
         <div className="social-section">
