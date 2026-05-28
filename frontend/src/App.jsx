@@ -1,3 +1,5 @@
+import { Routes, Route } from "react-router-dom";
+
 import { Toaster } from "react-hot-toast";
 
 import { useTheme } from "./context/ThemeContext";
@@ -16,8 +18,6 @@ import SuperAdminLogin from "./pages/SuperAdminLogin";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
-import { Routes, Route } from "react-router-dom";
-
 function App() {
   const { darkMode } = useTheme();
 
@@ -26,7 +26,6 @@ function App() {
       className={darkMode ? "dark-theme" : "light-theme"}
       style={{
         minHeight: "100vh",
-
         width: "100%",
       }}
     >
@@ -57,9 +56,23 @@ function App() {
           }
         />
 
-        <Route path="/masters" element={<Masters />} />
+        <Route
+          path="/masters"
+          element={
+            <ProtectedRoute allowedRoles={["super_admin", "company_admin"]}>
+              <Masters />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/operations" element={<Operations />} />
+        <Route
+          path="/operations"
+          element={
+            <ProtectedRoute allowedRoles={["super_admin", "company_admin"]}>
+              <Operations />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );
