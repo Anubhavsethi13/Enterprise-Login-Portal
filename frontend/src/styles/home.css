@@ -1,65 +1,212 @@
 .home-container {
-    width: 100%;
-    height: 100vh;
+  min-height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background:
+    linear-gradient(135deg, rgba(0, 10, 25, 0.95), rgba(0, 30, 60, 0.92)),
+    url("../assets/hero.jpg");
+
+  background-size: cover;
+
+  background-position: center;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 40px;
 }
 
-.portal-card {
-    width: 450px;
+.overlay {
+  position: absolute;
 
-    padding: 50px;
+  width: 100%;
 
-    border-radius: 30px;
+  height: 100%;
 
-    background: rgba(255, 255, 255, 0.08);
-
-    backdrop-filter: blur(12px);
-
-    border: 1px solid rgba(255, 255, 255, 0.1);
-
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-
-    text-align: center;
+  backdrop-filter: blur(6px);
 }
 
-.portal-title {
-    font-size: 38px;
-    margin-bottom: 40px;
-    color: white;
+.home-content {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 900px;
+
+  text-align: center;
+
+  padding: 60px;
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
 }
 
-.portal-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+.logo-badge {
+  width: 90px;
+
+  height: 90px;
+
+  margin: auto;
+
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #00c2ff, #007bff);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 28px;
+
+  font-weight: bold;
+
+  color: white;
+
+  margin-bottom: 30px;
+
+  box-shadow: 0 0 30px rgba(0, 194, 255, 0.5);
 }
 
-.portal-btn {
-    padding: 18px;
+.home-content h1 {
+  font-size: 64px;
 
-    border-radius: 14px;
+  color: white;
 
-    background: linear-gradient(90deg,
-            #0ea5e9,
-            #06b6d4);
+  margin-bottom: 20px;
 
-    color: white;
-
-    font-size: 18px;
-    font-weight: bold;
-
-    border: none;
-
-    cursor: pointer;
-
-    transition: 0.3s ease;
+  line-height: 1.2;
 }
 
-.portal-btn:hover {
-    transform: translateY(-3px);
+.home-content h1 span {
+  color: #00c2ff;
+}
 
-    box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+.home-content p {
+  color: rgba(255, 255, 255, 0.75);
+
+  font-size: 20px;
+
+  line-height: 1.8;
+
+  margin-bottom: 40px;
+}
+
+.home-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 20px;
+
+  margin-bottom: 50px;
+
+  flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 16px 32px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  font-size: 17px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #00c2ff, #007bff);
+
+  color: white;
+
+  box-shadow: 0 0 25px rgba(0, 194, 255, 0.4);
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.08);
+
+  color: white;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.feature-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 20px;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.feature-card h3 {
+  color: #00c2ff;
+
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 15px;
+
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .home-content {
+    padding: 35px 25px;
+  }
+
+  .home-content h1 {
+    font-size: 42px;
+  }
+
+  .home-content p {
+    font-size: 16px;
+  }
 }
