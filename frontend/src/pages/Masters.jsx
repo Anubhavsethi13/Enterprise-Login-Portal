@@ -1,50 +1,56 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-
 import DataTable from "../components/DataTable";
-
+import {
+  getMasters,
+  createMaster,
+  deleteMaster,
+} from "../services/masterService";
 import "../styles/masters.css";
 
 function Masters() {
-  const [masters, setMasters] = useState([
-    {
-      id: 1,
-      master: "Role Management",
-      category: "Admin",
-    },
-
-    {
-      id: 2,
-      master: "Permission Control",
-      category: "Security",
-    },
-  ]);
-
+  const [masters, setMasters] = useState([]);
   const [masterName, setMasterName] = useState("");
+  const [description, setDescription] = useState("");
 
-  const [category, setCategory] = useState("");
-
-  const handleAddMaster = () => {
-    if (!masterName || !category) return;
-
-    const newMaster = {
-      id: masters.length + 1,
-
-      master: masterName,
-
-      category,
-    };
-
-    setMasters([...masters, newMaster]);
-
-    setMasterName("");
-
-    setCategory("");
+  const loadMasters = async () => {
+    try {
+      const data = await getMasters();
+      setMasters(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleDelete = (id) => {
-    setMasters(masters.filter((item) => item.id !== id));
+  useEffect(() => {
+    loadMasters();
+  }, []);
+
+  const handleAddMaster = async () => {
+    if (!masterName || !description) return;
+
+    try {
+      await createMaster({
+        name: masterName,
+        description: description,
+      });
+
+      setMasterName("");
+      setDescription("");
+
+      loadMasters();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteMaster(id);
+      loadMasters();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -64,16 +70,16 @@ function Masters() {
 
           <input
             type="text"
-            placeholder="Category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
 
           <button onClick={handleAddMaster}>Add Master</button>
         </div>
 
         <DataTable
-          columns={["ID", "Master", "Category"]}
+          columns={["ID", "Name", "Description"]}
           data={masters}
           renderActions={(item) => (
             <button
